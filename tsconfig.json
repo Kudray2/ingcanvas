@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "sourceRoot": "./src/**/*",
+    "target": "ES6",
+    "inlineSourceMap": true,
+    "outDir": "./",
+    "outFile": "./index.js",
+    "module": "AMD",
+    "strict": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

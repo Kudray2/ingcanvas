@@ -1,4 +1,11 @@
-export function makeRectMatrixCalc(canvas) {
+type Coord = [number, number];
+type Coords = Array<Coord>;
+type Colors = "red" | "green" | "blue" | "yellow" | "teal" | "black";
+
+export function makeRectMatrixCalc(
+  canvas: HTMLCanvasElement,
+  container: HTMLDivElement
+): { elementsTotal: number; elementsInLine: number } {
   canvas.width = container.clientWidth;
   canvas.height = container.clientHeight;
 
@@ -9,8 +16,11 @@ export function makeRectMatrixCalc(canvas) {
   return { elementsTotal, elementsInLine };
 }
 
-export function makeCoords(itemsNumber, elementsInLine) {
-  const coords = [];
+export function makeCoords(
+  itemsNumber: number,
+  elementsInLine: number
+): Coords {
+  const coords: Coords = [];
   let currentLinePosition = 0;
   let currentline = 0;
 
@@ -31,14 +41,25 @@ export function makeCoords(itemsNumber, elementsInLine) {
   return coords;
 }
 
-function makeRandomColor() {
-  const colors = ["red", "green", "blue", "yellow", "teal", "black"];
+function makeRandomColor(): Colors {
+  const colors: Array<Colors> = [
+    "red",
+    "green",
+    "blue",
+    "yellow",
+    "teal",
+    "black",
+  ];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
   return randomColor;
 }
 
-function refillRectangle(posx, posy, ctx) {
+function refillRectangle(
+  posx: number,
+  posy: number,
+  ctx: CanvasRenderingContext2D
+): void {
   ctx.clearRect(posx, posy, 20, 20);
   ctx.fillStyle = makeRandomColor();
   ctx.strokeStyle = "#be2596";
@@ -47,7 +68,11 @@ function refillRectangle(posx, posy, ctx) {
   ctx.strokeRect(posx, posy, 20, 20);
 }
 
-export function makeRectangle(posx, posy, ctx) {
+export function makeRectangle(
+  posx: number,
+  posy: number,
+  ctx: CanvasRenderingContext2D
+) {
   ctx.fillStyle = makeRandomColor();
   ctx.fillRect(posx, posy, 20, 20);
   window.addEventListener("click", function (event) {
