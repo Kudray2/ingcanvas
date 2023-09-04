@@ -4,7 +4,7 @@ import {
   makeRectMatrixCalc,
   globalListener,
 } from "./helpers";
-
+import "./index.css";
 window.onscroll = () => window.scroll(0, 0);
 
 const canvas = document.getElementById("rootCanvas") as HTMLCanvasElement;
