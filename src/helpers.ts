@@ -75,16 +75,26 @@ export function makeRectangle(
 ) {
   ctx.fillStyle = makeRandomColor();
   ctx.fillRect(posx, posy, 20, 20);
-  window.addEventListener("click", function (event) {
-    const mouseXPosition = event.clientX;
-    const mouseYPosition = event.clientY;
-    const isInXfield =
-      mouseXPosition >= posx + 8 && mouseXPosition <= posx + 28;
-    const isInYfield =
-      mouseYPosition >= posy + 8 && mouseYPosition <= posy + 28;
+}
 
-    if (isInXfield && isInYfield) {
-      refillRectangle(posx, posy, ctx);
+export function globalListener(
+  event: MouseEvent,
+  coords: Coords,
+  ctx: CanvasRenderingContext2D
+) {
+  console.log("globalListener ==> ");
+  const mouseXPosition = event.clientX;
+  const mouseYPosition = event.clientY;
+
+  for (let coord of coords) {
+    if (
+      mouseXPosition >= coord[0] + 8 &&
+      mouseXPosition <= coord[0] + 28 &&
+      mouseYPosition >= coord[1] + 8 &&
+      mouseYPosition <= coord[1] + 28
+    ) {
+      console.log("hit!");
+      refillRectangle(coord[0], coord[1], ctx);
     }
-  });
+  }
 }
