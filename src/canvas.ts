@@ -38,5 +38,6 @@ window.addEventListener("resize", function() {
   console.log("resize is working");
   canvas.width = container.clientWidth;
   canvas.height = container.clientHeight;
+  console.log(canvas.height);
   makeRectangleMatrix();
 });
